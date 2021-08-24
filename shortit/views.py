@@ -64,3 +64,11 @@ def redirect_view(request, url):
             context = {"url": I_want_to_travel_to.destination}
             return render(request, "redirection_page.html", context)
     return redirect("/site/")
+
+@login_required
+def flush_view(request):
+    try:
+        Urls.objects.all().delete()
+    except ObjectDoesNotExist:
+        pass
+    return redirect("/")

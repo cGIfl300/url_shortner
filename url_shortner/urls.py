@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from shortit.views import shortit, actives, redirect_view
+from shortit.views import shortit, actives, redirect_view, flush_view
 
 urlpatterns = [
     path('site/admin/', admin.site.urls),
     path('site/', shortit),
     path('site/actives/', actives),
+    path('site/flush/', flush_view),
     path('', shortit),
     path('<str:url>/', redirect_view),
 ]
