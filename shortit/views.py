@@ -2,8 +2,9 @@ from random import randint
 
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
-from django.shortcuts import render, redirect
 from django.core.validators import URLValidator
+from django.shortcuts import render, redirect
+
 from shortit.models import Urls
 from url_shortner.settings import BASE_URL
 
@@ -70,6 +71,7 @@ def redirect_view(request, url):
             context = {"url": I_want_to_travel_to.destination}
             return render(request, "redirection_page.html", context)
     return redirect("/site/")
+
 
 @login_required
 def flush_view(request):
