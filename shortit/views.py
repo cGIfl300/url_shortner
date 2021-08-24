@@ -1,9 +1,9 @@
 from random import randint
 
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import ObjectDoesNotExist
+from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.shortcuts import render, redirect
-
+from django.core.validators import URLValidator
 from shortit.models import Urls
 from url_shortner.settings import BASE_URL
 
@@ -15,6 +15,12 @@ def shortit(request):
         url = request.POST.get("url", None),
         if url is not None:
             url = url[0]
+            # Check if URL is valid
+            test_url = URLValidator()
+            try:
+                test_url(url)
+            except ValidationError:
+                return render(request, "redirect.html")
             # Redirect to a success page.
             new_url = create_url(url)
             context = {'url': url,
