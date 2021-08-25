@@ -3,6 +3,7 @@ from random import randint
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.core.validators import URLValidator
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 from shortit.models import Urls
@@ -68,9 +69,7 @@ def redirect_view(request, url):
             return redirect("/site/")
 
         if I_want_to_travel_to:
-            context = {"url": I_want_to_travel_to.destination}
-            return render(request, "redirection_page.html", context)
-    return redirect("/site/")
+            return HttpResponseRedirect(I_want_to_travel_to.destination)
 
 
 @login_required
