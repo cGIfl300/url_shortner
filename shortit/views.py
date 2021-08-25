@@ -37,9 +37,6 @@ def shortit(request):
             return render(request, "redirect.html")
 
     # if a GET (or any other method) we'll create a blank form
-    else:
-        return render(request, "redirect.html")
-
     return render(request, "redirect.html")
 
 
@@ -64,12 +61,12 @@ def actives(request):
 def redirect_view(request, url):
     if request.method == "GET":
         try:
-            I_want_to_travel_to = Urls.objects.get(short__iexact=BASE_URL + url)
+            i_want_to_travel_to = Urls.objects.get(short__iexact=BASE_URL + url)
         except ObjectDoesNotExist:
             return redirect("/site/")
 
-        if I_want_to_travel_to:
-            return HttpResponseRedirect(I_want_to_travel_to.destination)
+        if i_want_to_travel_to:
+            return HttpResponseRedirect(i_want_to_travel_to.destination)
 
 
 @login_required
