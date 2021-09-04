@@ -54,7 +54,9 @@ def create_url(url):
 @login_required
 def actives(request):
     every_links = Urls.objects.all()
-    context = {"Urls": every_links}
+    number_of_links = every_links.count()
+    context = {"Urls": every_links,
+               "number_of_links": number_of_links}
     return render(request, "list_active.html", context)
 
 

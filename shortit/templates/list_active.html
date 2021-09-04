@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="container border my-3 text-center">
-    <h1>Actives redirections list</h1>
+    <h1>Actives redirections list<br>(total: {{ number_of_links }})</h1>
     <div class="list-group my-3">
         {% for u in Urls %}
             <a href="{{ u.destination }}"
